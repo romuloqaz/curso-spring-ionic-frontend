@@ -25,6 +25,16 @@ export class AuthService{
     });
   }
 
+  refreshToken() {
+    return this.http.post(
+        `${API_CONFIG.baseUrl}/auth/refresh_token`,
+        {},//TOKEN INCLUIDO NO INTERCEPTOR
+        {
+            observe: 'response',
+            responseType: 'text'
+        });
+}
+
   successfulLogin(authorizationValue : string){
     let tok = authorizationValue.substring(7) //para pegar token sem a palavra bearer
     let user : LocalUser = {
